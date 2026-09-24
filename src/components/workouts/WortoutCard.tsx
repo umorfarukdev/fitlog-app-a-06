@@ -1,7 +1,6 @@
 import { IWorkout } from "@/types/workoutType";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 import { FaBurn, FaRegClock, FaRegStar } from "react-icons/fa";
 
 interface IWorkoutProps {
@@ -20,9 +19,7 @@ const WortoutCard = ({ workout }: IWorkoutProps) => {
     rating,
   } = workout;
   return (
-    <Link
-    href={`/workouts/${workout.id}`}
-    >
+    <Link href={`/workouts/${id}`}>
       <div className="card border-gray-100 border rounded-2xl">
         <figure className="max-h-60">
           <Image
