@@ -1,3 +1,5 @@
+"use client"
+
 import { IWorkout } from "@/types/workoutType";
 import { createContext, ReactNode, useState } from "react";
 

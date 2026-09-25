@@ -1,11 +1,11 @@
 import Image from "next/image";
 import {
-  CalendarPlus,
   Bookmark,
   Star,
 } from "lucide-react";
 
 import { IWorkout } from "@/types/workoutType";
+import AddToTodayBtn from "@/components/workouts/AddToTodayBtn";
 
 interface IWorkoutDetailsProps {
   params: Promise<{ excerciseId: string }>;
@@ -30,6 +30,9 @@ const WorkoutDetails = async ({ params }: IWorkoutDetailsProps) => {
   const workouts: IWorkout[] = await workoutsPromise();
 
   const workout = workouts.find((workout) => workout.id === Number(excerciseId));
+  if (!workout) {
+    throw new Error("Workout not fount")
+  }
   const {
     name,
     image,
@@ -43,7 +46,7 @@ const WorkoutDetails = async ({ params }: IWorkoutDetailsProps) => {
     rating,
     description,
     instructions,
-  } = workout as IWorkout;
+  } = workout;
 
   return (
     <div className="container mx-auto px-4 py-10">
@@ -153,10 +156,7 @@ const WorkoutDetails = async ({ params }: IWorkoutDetailsProps) => {
 
           {/* Buttons */}
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <button className="btn btn-primary flex-1 gap-2">
-              <CalendarPlus size={20} />
-              Add to today{`'`}s plan
-            </button>
+            <AddToTodayBtn workout={workout}></AddToTodayBtn>
 
             <button className="btn btn-outline flex-1 gap-2">
               <Bookmark size={20} />
