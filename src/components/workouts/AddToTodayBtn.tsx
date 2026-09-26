@@ -15,6 +15,7 @@ const AddToTodayBtn = ({ workout }: { workout: IWorkout }) => {
     if (exists) return;
 
     const updatedPlan = [...todaysPlan, workout];
+    console.log("update plan", updatedPlan.length);
 
     setTodaysPlan(updatedPlan);
     toast.success("Successfully Add Today Workout!", {
@@ -28,6 +29,9 @@ const AddToTodayBtn = ({ workout }: { workout: IWorkout }) => {
       theme: "light",
       transition: Bounce,
     });
+
+    
+
   };
 
   return (

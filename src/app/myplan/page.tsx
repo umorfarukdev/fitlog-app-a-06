@@ -86,13 +86,13 @@ const ListedPlanCard = () => {
         </div>
       </div>
 
-      <div>
+      <div className="w-full text-center mt-10">
         <select
           value={sortBy}
           onChange={(e) =>
             setSortBy(e.target.value as "duration" | "calories" | "rating")
           }
-          className="select select-accent"
+          className="select select-accent w-1/3"
         >
           <option disabled={true}>Sort By</option>
           <option value={"duration"}>Duration</option>
