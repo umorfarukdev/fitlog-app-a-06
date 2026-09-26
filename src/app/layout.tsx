@@ -20,7 +20,7 @@ const geistOswald = Oswald({
 });
 
 const geistInter = Inter({
-  variable: "--font-geist-inter",
+  variable: "--font-inter-custom",
   subsets: ["latin"],
 });
 

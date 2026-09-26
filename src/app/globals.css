@@ -6,5 +6,5 @@
 }
 
 @theme {
-  --font-inter: var(--font-geist-inter);
+  --font-inter: var(--font-inter-custom);
 }

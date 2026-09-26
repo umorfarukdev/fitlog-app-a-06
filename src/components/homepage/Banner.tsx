@@ -1,5 +1,6 @@
 import Image from "next/image";
 import hero from "./../../../public/banner.png";
+import Link from "next/link";
 
 const Banner = () => {
   return (
@@ -22,9 +23,9 @@ const Banner = () => {
             FitLog is a dark, no-nonsense gym companion: pick a lift, lock it
             into today`s plan, and watch the week`s work add up.
           </p>
-          <button className="btn btn-primary font-bold bg-[#C2F800] border-none text-black">
+          <Link href="/workouts" className="btn btn-primary font-bold bg-[#C2F800] border-none text-black">
             BROWSE WORKOUTS
-          </button>
+          </Link>
         </div>
       </div>
     </div>

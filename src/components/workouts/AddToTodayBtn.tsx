@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { WorkoutContext } from "@/contexts/WorkoutContext";
 import { IWorkout } from "@/types/workoutType";
@@ -9,12 +9,18 @@ const AddToTodayBtn = ({ workout }: { workout: IWorkout }) => {
   const { todaysPlan, setTodaysPlan } = useContext(WorkoutContext);
 
   const handleAddTodaysPlan = () => {
-    setTodaysPlan([...todaysPlan, workout]);
-    console.log("TODAY PLAN:", todaysPlan);
+    const exists = todaysPlan.some((item) => item.id === workout.id);
+
+    if (exists) return;
+
+    const updatedPlan = [...todaysPlan, workout];
+
+    setTodaysPlan(updatedPlan);
   };
+
   return (
     <button
-      className="btn btn-primary flex-1 gap-2"
+      className="btn flex-1 gap-2 bg-[#CCFF00] font-bold text-black"
       onClick={handleAddTodaysPlan}
     >
       <CalendarPlus size={20} />

@@ -18,10 +18,10 @@ const workoutsPromise = async () => {
 const WorksoutPage = async () => {
   const workouts: IWorkout[] = await workoutsPromise();
   return (
-    <section className="container mx-auto">
-      <div>
-        <h1>THE LIBRARY</h1>
-        <p>Twelve lifts covering every major muscle group.</p>
+    <section className="container mx-auto py-16">
+      <div className="mb-8">
+        <h1 className="font-oswald font-bold text-3xl">THE LIBRARY</h1>
+        <p className="text-[#9CA3AF]">Twelve lifts covering every major muscle group.</p>
       </div>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {workouts.map((workout) => (

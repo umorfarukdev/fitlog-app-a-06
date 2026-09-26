@@ -1,11 +1,7 @@
 import Image from "next/image";
-import {
-  Bookmark,
-  Star,
-} from "lucide-react";
-
 import { IWorkout } from "@/types/workoutType";
 import AddToTodayBtn from "@/components/workouts/AddToTodayBtn";
+import AddSaveLaterBtn from "@/components/workouts/AddSaveLaterBtn";
 
 interface IWorkoutDetailsProps {
   params: Promise<{ excerciseId: string }>;
@@ -29,9 +25,11 @@ const WorkoutDetails = async ({ params }: IWorkoutDetailsProps) => {
   const { excerciseId } = await params;
   const workouts: IWorkout[] = await workoutsPromise();
 
-  const workout = workouts.find((workout) => workout.id === Number(excerciseId));
+  const workout = workouts.find(
+    (workout) => workout.id === Number(excerciseId),
+  );
   if (!workout) {
-    throw new Error("Workout not fount")
+    throw new Error("Workout not fount");
   }
   const {
     name,
@@ -59,7 +57,9 @@ const WorkoutDetails = async ({ params }: IWorkoutDetailsProps) => {
         {/* RIGHT SIDE */}
         <div className="flex flex-col justify-center">
           {/* Title */}
-          <h1 className="text-3xl font-bold uppercase md:text-4xl">{name}</h1>
+          <h1 className="text-3xl font-bold font-oswald uppercase md:text-4xl">
+            {name}
+          </h1>
 
           {/* Description */}
           <p className="mt-4 text-base leading-7 text-base-content/70">
@@ -71,7 +71,7 @@ const WorkoutDetails = async ({ params }: IWorkoutDetailsProps) => {
             {muscleGroups.map((muscle) => (
               <span
                 key={muscle}
-                className="badge badge-primary badge-outline px-4 py-3"
+                className="badge badge-primary badge-xl font-semibold rounded-full bg-[#C2F800] text-black"
               >
                 {muscle}
               </span>
@@ -80,57 +80,69 @@ const WorkoutDetails = async ({ params }: IWorkoutDetailsProps) => {
 
           {/* Specs */}
           <div className="mt-8 overflow-hidden rounded-xl border border-base-300">
-            <div className="grid grid-cols-2">
-              <div className="border-b border-r border-base-300 p-4">
-                <p className="text-xs font-semibold uppercase text-base-content/50">
+            <div className="w-full rounded-xl bg-[#232834] p-2 text-[#9fa6b2] font-sans text-xs">
+              {/* Equipment Row */}
+              <div className="flex items-center justify-between px-4 py-3 border-b border-[#9CA3AF20]">
+                <span className="uppercase tracking-wider font-medium">
                   Equipment
-                </p>
-                <p className="mt-1 font-medium">{equipment}</p>
+                </span>
+                <span className="text-sm font-normal text-white">
+                  {equipment}
+                </span>
               </div>
 
-              <div className="border-b border-base-300 p-4">
-                <p className="text-xs font-semibold uppercase text-base-content/50">
+              {/* Difficulty Row */}
+              <div className="flex items-center justify-between px-4 py-3 border-b border-[#9CA3AF20]">
+                <span className="uppercase tracking-wider font-medium">
                   Difficulty
-                </p>
-                <p className="mt-1 font-medium">{difficulty}</p>
+                </span>
+                <span className="text-sm font-normal text-white">
+                  {difficulty}
+                </span>
               </div>
 
-              <div className="border-b border-r border-base-300 p-4">
-                <p className="text-xs font-semibold uppercase text-base-content/50">
+              {/* Sets Row */}
+              <div className="flex items-center justify-between px-4 py-3 border-b border-[#9CA3AF20]">
+                <span className="uppercase tracking-wider font-medium">
                   Sets
-                </p>
-                <p className="mt-1 font-medium">{sets}</p>
+                </span>
+                <span className="text-sm font-normal text-white">{sets}</span>
               </div>
 
-              <div className="border-b border-base-300 p-4">
-                <p className="text-xs font-semibold uppercase text-base-content/50">
+              {/* Reps Row */}
+              <div className="flex items-center justify-between px-4 py-3 border-b border-[#9CA3AF20]">
+                <span className="uppercase tracking-wider font-medium">
                   Reps
-                </p>
-                <p className="mt-1 font-medium">{reps}</p>
+                </span>
+                <span className="text-sm font-normal text-white">{reps}</span>
               </div>
 
-              <div className="border-r border-base-300 p-4">
-                <p className="text-xs font-semibold uppercase text-base-content/50">
+              {/* Duration Row */}
+              <div className="flex items-center justify-between px-4 py-3 border-b border-[#9CA3AF20]">
+                <span className="uppercase tracking-wider font-medium">
                   Duration
-                </p>
-                <p className="mt-1 font-medium">{duration} min</p>
+                </span>
+                <span className="text-sm font-normal text-white">
+                  {duration} min
+                </span>
               </div>
 
-              <div className="p-4">
-                <p className="text-xs font-semibold uppercase text-base-content/50">
+              {/* Calories Row */}
+              <div className="flex items-center justify-between px-4 py-3 border-b border-[#9CA3AF20]">
+                <span className="uppercase tracking-wider font-medium">
                   Calories
-                </p>
-                <p className="mt-1 font-medium">{caloriesBurned} kcal</p>
+                </span>
+                <span className="text-sm font-normal text-white">
+                  {caloriesBurned} kcal
+                </span>
               </div>
 
-              <div className="col-span-2 border-t border-base-300 p-4">
-                <div className="flex items-center gap-2">
-                  <Star size={18} className="fill-yellow-400 text-yellow-400" />
-
-                  <span className="font-semibold">{rating}</span>
-
-                  <span className="text-sm text-base-content/50">Rating</span>
-                </div>
+              {/* Rating Row */}
+              <div className="flex items-center justify-between px-4 py-4">
+                <span className="uppercase tracking-wider font-medium">
+                  Rating
+                </span>
+                <span className="text-sm font-normal text-white">{rating}</span>
               </div>
             </div>
           </div>
@@ -139,11 +151,12 @@ const WorkoutDetails = async ({ params }: IWorkoutDetailsProps) => {
           <div className="mt-8">
             <h2 className="text-xl font-bold uppercase">Instructions</h2>
 
-            <ol className="mt-4 space-y-4">
+            <ul className="mt-4 space-y-4">
               {instructions.map((instruction, index) => (
-                <li key={index} className="flex gap-4">
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary font-bold text-primary-content">
-                    {index + 1}
+                <li key={index} className="flex items-center gap-4">
+                  <span className="text-[#9CA3AF]"
+                  >
+                    {index + 1}.
                   </span>
 
                   <p className="pt-1 leading-6 text-base-content/70">
@@ -151,17 +164,14 @@ const WorkoutDetails = async ({ params }: IWorkoutDetailsProps) => {
                   </p>
                 </li>
               ))}
-            </ol>
+            </ul>
           </div>
 
           {/* Buttons */}
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <AddToTodayBtn workout={workout}></AddToTodayBtn>
 
-            <button className="btn btn-outline flex-1 gap-2">
-              <Bookmark size={20} />
-              Save for later
-            </button>
+            <AddSaveLaterBtn workout={workout}></AddSaveLaterBtn>
           </div>
         </div>
       </div>

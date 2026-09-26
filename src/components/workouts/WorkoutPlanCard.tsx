@@ -1,10 +1,22 @@
 import { IWorkout } from "@/types/workoutType";
 import Image from "next/image";
-import React from "react";
 import { Check, Eye, X } from "lucide-react";
 import { FaBurn, FaRegClock, FaRegStar } from "react-icons/fa";
+import Link from "next/link";
 
-const WorkoutPlanCard = ({ plan }: { plan: IWorkout }) => {
+const WorkoutPlanCard = ({
+  id,
+  plan,
+  type,
+  handleRemovePlan,
+  handleRemovePlanSaveLater,
+}: {
+  id: number
+  plan: IWorkout;
+  type: "today" | "saved";
+  handleRemovePlan: (id: number) => void;
+  handleRemovePlanSaveLater: (id: number) => void;
+}) => {
   return (
     <div className="card bg-base-100 border border-base-300 shadow-md p-4 ">
       <div className="flex flex-col md:flex-row items-center gap-5">
@@ -31,11 +43,11 @@ const WorkoutPlanCard = ({ plan }: { plan: IWorkout }) => {
               {plan.duration}
             </p>
             <p className="flex gap-2 items-center">
-              <FaBurn className="text-[#CCFF00]"/>
+              <FaBurn className="text-[#CCFF00]" />
               {plan.caloriesBurned}
             </p>
             <p className="flex gap-2 items-center">
-              <FaRegStar className="text-[#CCFF00]"/>
+              <FaRegStar className="text-[#CCFF00]" />
               {plan.rating}
             </p>
           </div>
@@ -43,17 +55,25 @@ const WorkoutPlanCard = ({ plan }: { plan: IWorkout }) => {
 
         {/* Right - Actions */}
         <div className="md:flex  gap-2 w-full md:w-auto">
-          <button className="btn btn-outline rounded-full gap-2">
-            <Eye size={16} className=""/>
+          <Link href={`/workouts/${plan.id}`} className="btn btn-outline rounded-full gap-2">
+            <Eye size={16} className="" />
             View Details
-          </button>
+          </Link>
 
           <button className="btn  rounded-full font-bold text-black bg-[#CCFF00] gap-2">
             <Check size={16} className="font-bold" />
             Mark as Done
           </button>
 
-          <button className="gap-2 font-bold" aria-label="Remove workout">
+          <button
+            onClick={() =>
+              type === "today"
+                ? handleRemovePlan(plan.id)
+                : handleRemovePlanSaveLater(plan.id)
+            }
+            className="gap-2 font-bold"
+            aria-label="Remove workout"
+          >
             <X size={18} />
           </button>
         </div>

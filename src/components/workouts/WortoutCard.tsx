@@ -33,14 +33,17 @@ const WortoutCard = ({ workout }: IWorkoutProps) => {
         <div className="p-5">
           <div className="flex gap-4 space-y-3 mt-4">
             {muscleGroups.map((muscle, i) => (
-              <p key={i} className="badge badge-primary">
+              <p
+                key={i}
+                className="badge badge-primary badge-xl rounded-full bg-[#C2F800] text-black"
+              >
                 {muscle}
               </p>
             ))}
           </div>
           <div className="">
-            <h2 className="">{name}</h2>
-            <p>{equipment}</p>
+            <h2 className="text-xl">{name.toUpperCase()}</h2>
+            <p className="text-[#9CA3AF]">{equipment}</p>
           </div>
           <div className="divider"></div>
           <div className="flex gap-5">
