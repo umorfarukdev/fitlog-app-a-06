@@ -4,6 +4,7 @@ import { WorkoutContext } from "@/contexts/WorkoutContext";
 import { IWorkout } from "@/types/workoutType";
 import { CalendarPlus } from "lucide-react";
 import React, { useContext } from "react";
+import { Bounce, toast } from "react-toastify";
 
 const AddToTodayBtn = ({ workout }: { workout: IWorkout }) => {
   const { todaysPlan, setTodaysPlan } = useContext(WorkoutContext);
@@ -16,6 +17,17 @@ const AddToTodayBtn = ({ workout }: { workout: IWorkout }) => {
     const updatedPlan = [...todaysPlan, workout];
 
     setTodaysPlan(updatedPlan);
+    toast.success("Successfully Add Today Workout!", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
   };
 
   return (

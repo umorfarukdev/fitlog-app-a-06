@@ -5,6 +5,7 @@ import { WorkoutContext } from "@/contexts/WorkoutContext";
 import { IWorkout } from "@/types/workoutType";
 import Link from "next/link";
 import { useContext, useState } from "react";
+import { Bounce, toast } from "react-toastify";
 
 const ListedPlanCard = () => {
   const { todaysPlan, saveLater, setTodaysPlan, setSaveLater } =
@@ -14,6 +15,8 @@ const ListedPlanCard = () => {
   const [sortBy, setSortBy] = useState<"duration" | "calories" | "rating">(
     "duration",
   );
+
+  console.log(sortBy);
 
   const sortWorkouts = (workouts: IWorkout[]) => {
     const sortedWorkout = [...workouts];
@@ -27,8 +30,10 @@ const ListedPlanCard = () => {
     return sortedWorkout;
   };
 
-  const sortedWorkoutsPlan = sortWorkouts(todaysPlan)
-  const sortedWorkoutsPlanSave = sortWorkouts(saveLater)
+  const sortedWorkoutsPlan = sortWorkouts(todaysPlan);
+  const sortedWorkoutsPlanSave = sortWorkouts(saveLater);
+
+  console.log(sortedWorkoutsPlan);
 
   const handleRemovePlan = (id: number) => {
     const updatePlan = todaysPlan.filter((plan) => plan.id !== id);
@@ -38,6 +43,17 @@ const ListedPlanCard = () => {
   const handleRemovePlanSaveLater = (id: number) => {
     const updatePlanSaveLater = saveLater.filter((plan) => plan.id !== id);
     setSaveLater(updatePlanSaveLater);
+    toast.success("Saved Plan Successfully Removed!", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
   };
 
   return (
@@ -72,7 +88,7 @@ const ListedPlanCard = () => {
 
       <div>
         <select
-        value={sortBy}
+          value={sortBy}
           onChange={(e) =>
             setSortBy(e.target.value as "duration" | "calories" | "rating")
           }
@@ -87,7 +103,7 @@ const ListedPlanCard = () => {
 
       {/* name of each tab group should be unique */}
       <div>
-        {todaysPlan.length === 0 ? (
+        {todaysPlan.length === 0 && saveLater.length === 0 ? (
           <div className="text-center py-10 border my-16 rounded-2xl">
             <h1 className="font-bold font-oswald text-center">
               NOTHING HERE YET

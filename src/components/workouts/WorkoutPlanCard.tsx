@@ -3,20 +3,36 @@ import Image from "next/image";
 import { Check, Eye, X } from "lucide-react";
 import { FaBurn, FaRegClock, FaRegStar } from "react-icons/fa";
 import Link from "next/link";
+import { Bounce, toast } from "react-toastify";
 
 const WorkoutPlanCard = ({
-  id,
   plan,
   type,
   handleRemovePlan,
   handleRemovePlanSaveLater,
 }: {
-  id: number
   plan: IWorkout;
   type: "today" | "saved";
   handleRemovePlan: (id: number) => void;
   handleRemovePlanSaveLater: (id: number) => void;
 }) => {
+  const handleMarkDone = () => {
+    // remove from today's plan
+    handleRemovePlan(plan.id);
+
+    // show success message
+    toast.success("Todays Plan Successfully Removed!", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
+  };
   return (
     <div className="card bg-base-100 border border-base-300 shadow-md p-4 ">
       <div className="flex flex-col md:flex-row items-center gap-5">
@@ -55,20 +71,28 @@ const WorkoutPlanCard = ({
 
         {/* Right - Actions */}
         <div className="md:flex  gap-2 w-full md:w-auto">
-          <Link href={`/workouts/${plan.id}`} className="btn btn-outline rounded-full gap-2">
+          <Link
+            href={`/workouts/${plan.id}`}
+            className="btn btn-outline rounded-full gap-2"
+          >
             <Eye size={16} className="" />
             View Details
           </Link>
 
-          <button className="btn  rounded-full font-bold text-black bg-[#CCFF00] gap-2">
-            <Check size={16} className="font-bold" />
-            Mark as Done
-          </button>
+          {type === "today" && (
+            <button
+              onClick={handleMarkDone}
+              className="btn rounded-full font-bold text-black bg-[#CCFF00] gap-2"
+            >
+              <Check size={16} />
+              Mark as Done
+            </button>
+          )}
 
           <button
             onClick={() =>
               type === "today"
-                ? handleRemovePlan(plan.id)
+                ? handleMarkDone()
                 : handleRemovePlanSaveLater(plan.id)
             }
             className="gap-2 font-bold"
