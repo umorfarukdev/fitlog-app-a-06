@@ -23,7 +23,9 @@ const Banner = () => {
             FitLog is a dark, no-nonsense gym companion: pick a lift, lock it
             into today`s plan, and watch the week`s work add up.
           </p>
-          <Link href="/workouts" className="btn btn-primary font-bold bg-[#C2F800] border-none text-black">
+          <Link href="/" 
+          className="btn btn-primary font-bold bg-[#C2F800] border-none text-black"
+          >
             BROWSE WORKOUTS
           </Link>
         </div>

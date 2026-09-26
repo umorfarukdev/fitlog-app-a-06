@@ -120,7 +120,7 @@ const ListedPlanCard = () => {
               Browse the library and add a lift to get today moving.
             </p>
             <Link
-              href="/workouts"
+              href="/"
               className="btn btn-primary font-bold bg-[#C2F800] border-none text-black"
             >
               Go to workouts
