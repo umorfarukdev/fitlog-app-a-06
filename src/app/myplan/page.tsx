@@ -11,12 +11,11 @@ const ListedPlanCard = () => {
   const { todaysPlan, saveLater, setTodaysPlan, setSaveLater } =
     useContext(WorkoutContext);
 
-  console.log("TODAY PLAN:", todaysPlan);
   const [sortBy, setSortBy] = useState<"duration" | "calories" | "rating">(
     "duration",
   );
 
-  console.log(sortBy);
+
 
   const sortWorkouts = (workouts: IWorkout[]) => {
     const sortedWorkout = [...workouts];
@@ -33,7 +32,7 @@ const ListedPlanCard = () => {
   const sortedWorkoutsPlan = sortWorkouts(todaysPlan);
   const sortedWorkoutsPlanSave = sortWorkouts(saveLater);
 
-  console.log(sortedWorkoutsPlan);
+
 
   const handleRemovePlan = (id: number) => {
     const updatePlan = todaysPlan.filter((plan) => plan.id !== id);
@@ -65,7 +64,7 @@ const ListedPlanCard = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border py-6 px-8 rounded-2xl">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border border-[#ffffff20] py-6 px-8 rounded-2xl">
         <div className="border-r mr-4">
           <p>Exercises</p>
           <h1 className="text-[#CCFF00] font-bold font-oswald text-4xl">
@@ -92,9 +91,9 @@ const ListedPlanCard = () => {
           onChange={(e) =>
             setSortBy(e.target.value as "duration" | "calories" | "rating")
           }
-          className="select select-accent w-1/3"
+          className="select w-1/3"
         >
-          <option disabled={true}>Sort By</option>
+          <option disabled>Sort By</option>
           <option value={"duration"}>Duration</option>
           <option value={"calories"}>Calories</option>
           <option value={"rating"}>Rating</option>
@@ -104,7 +103,7 @@ const ListedPlanCard = () => {
       {/* name of each tab group should be unique */}
       <div>
         {todaysPlan.length === 0 && saveLater.length === 0 ? (
-          <div className="text-center py-10 border my-16 rounded-2xl">
+          <div className="text-center py-10 border border-[#d3d3d340] my-16 rounded-2xl">
             <h1 className="font-bold font-oswald text-center">
               NOTHING HERE YET
             </h1>
@@ -119,7 +118,7 @@ const ListedPlanCard = () => {
             </Link>
           </div>
         ) : (
-          <div className="tabs tabs-box my-10">
+          <div className="tabs tabs-box my-10 border-[#d3d3d340]">
             <input
               type="radio"
               name="my_tabs_6"

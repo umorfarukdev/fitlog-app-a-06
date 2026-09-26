@@ -9,7 +9,12 @@ const AddSaveLaterBtn = ({ workout }: { workout: IWorkout }) => {
   const { saveLater, setSaveLater } = useContext(WorkoutContext);
 
   const handleAddSaveLater = () => {
-    setSaveLater([...saveLater, workout]);
+    const exists = saveLater.some((item) => item.id === workout.id);
+
+    if (exists) return;
+
+    const updatePlan = [...saveLater, workout]
+    setSaveLater(updatePlan);
     toast.success("Successfully Saved Workout!", {
       position: "bottom-right",
       autoClose: 5000,

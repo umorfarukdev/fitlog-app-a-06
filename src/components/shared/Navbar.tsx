@@ -15,6 +15,18 @@ const Navbar = () => {
       <li>
         <Link
           className={`transition duration-200 ${
+            pathName === "/"
+              ? "text-[#C2F800] bg-[#1A2312] font-semibold px-4 py-2 rounded-full  pb-1"
+              : "text-gray-500 hover:text-black"
+          }`}
+          href="/"
+        >
+          Home
+        </Link>
+      </li>
+      <li>
+        <Link
+          className={`transition duration-200 ${
             pathName === "/workouts"
               ? "text-[#C2F800] bg-[#1A2312] font-semibold px-4 py-2 rounded-full  pb-1"
               : "text-gray-500 hover:text-black"
@@ -40,7 +52,7 @@ const Navbar = () => {
   );
   return (
     <nav className="">
-      <div className="navbar bg-base-100 container mx-auto border-b border-gray-100">
+      <div className="navbar bg-base-100 container mx-auto border-b border-[#d3d3d340]">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
