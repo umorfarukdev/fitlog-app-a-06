@@ -22,18 +22,6 @@ const Navbar = () => {
           }`}
           href="/"
         >
-          Home
-        </Link>
-      </li>
-      <li>
-        <Link
-          className={`transition duration-200 ${
-            pathName === "/workouts"
-              ? "text-[#C2F800] bg-[#1A2312] font-semibold px-4 py-2 rounded-full  pb-1"
-              : "text-gray-500 hover:text-black"
-          }`}
-          href="/workouts"
-        >
           Workouts
         </Link>
       </li>
