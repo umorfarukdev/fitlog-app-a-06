@@ -12,7 +12,20 @@ const AddToTodayBtn = ({ workout }: { workout: IWorkout }) => {
   const handleAddTodaysPlan = () => {
     const exists = todaysPlan.some((item) => item.id === workout.id);
 
-    if (exists) return;
+    if (exists) {
+      toast.error("Already added todays plan!", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+      return
+    }
 
     const updatedPlan = [...todaysPlan, workout];
     setTodaysPlan(updatedPlan);
@@ -27,9 +40,6 @@ const AddToTodayBtn = ({ workout }: { workout: IWorkout }) => {
       theme: "light",
       transition: Bounce,
     });
-
-    
-
   };
 
   return (

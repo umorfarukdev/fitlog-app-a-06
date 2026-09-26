@@ -11,9 +11,22 @@ const AddSaveLaterBtn = ({ workout }: { workout: IWorkout }) => {
   const handleAddSaveLater = () => {
     const exists = saveLater.some((item) => item.id === workout.id);
 
-    if (exists) return;
+    if (exists) {
+      toast.error("Already saved plan!", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+      return
+    }
 
-    const updatePlan = [...saveLater, workout]
+    const updatePlan = [...saveLater, workout];
     setSaveLater(updatePlan);
     toast.success("Successfully Saved Workout!", {
       position: "bottom-right",

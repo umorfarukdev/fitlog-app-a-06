@@ -75,18 +75,18 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
         <div className="navbar-end">
-          <p className="badge font-bold border-none">
+          <Link href="/my-plan" className="badge font-bold border-none">
             Plan
             <span className="px-3.5 text-black py-2 bg-[#CCFF00] rounded-full">
               {todaysPlan.length}
             </span>
-          </p>
-          <p className="">
+          </Link>
+          <Link href="/my-plan" className="">
             Saved{" "}
             <span className="px-3 py-2 border-2 border-gray-200 rounded-full">
               {saveLater.length}
             </span>
-          </p>
+          </Link>
         </div>
       </div>
     </nav>

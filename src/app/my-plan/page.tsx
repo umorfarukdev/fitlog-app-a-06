@@ -15,7 +15,7 @@ const ListedPlanCard = () => {
     "duration",
   );
 
-
+  const [activeTab, setActiveTab] = useState<"today" | "saved">("today");
 
   const sortWorkouts = (workouts: IWorkout[]) => {
     const sortedWorkout = [...workouts];
@@ -31,8 +31,6 @@ const ListedPlanCard = () => {
 
   const sortedWorkoutsPlan = sortWorkouts(todaysPlan);
   const sortedWorkoutsPlanSave = sortWorkouts(saveLater);
-
-
 
   const handleRemovePlan = (id: number) => {
     const updatePlan = todaysPlan.filter((plan) => plan.id !== id);
@@ -68,19 +66,29 @@ const ListedPlanCard = () => {
         <div className="border-r mr-4">
           <p>Exercises</p>
           <h1 className="text-[#CCFF00] font-bold font-oswald text-4xl">
-            {todaysPlan.length}
+            {activeTab === "today" ? todaysPlan.length : saveLater.length}
           </h1>
         </div>
         <div className="border-r mr-4">
           <p>Minutes</p>
           <h1 className="font-bold font-oswald text-4xl">
-            {todaysPlan.reduce((total, plan) => total + plan.duration, 0)}
+            {activeTab === "today"
+              ? todaysPlan.reduce((total, plan) => total + plan.duration, 0)
+              : saveLater.reduce((total, plan) => total + plan.duration, 0)}
           </h1>
         </div>
         <div>
           <p>Calories</p>
           <h1 className="font-bold font-oswald text-4xl">
-            {todaysPlan.reduce((total, plan) => total + plan.caloriesBurned, 0)}
+            {activeTab === "today"
+              ? todaysPlan.reduce(
+                  (total, plan) => total + plan.caloriesBurned,
+                  0,
+                )
+              : saveLater.reduce(
+                  (total, plan) => total + plan.caloriesBurned,
+                  0,
+                )}
           </h1>
         </div>
       </div>
@@ -126,6 +134,7 @@ const ListedPlanCard = () => {
               className="tab checked:bg-[#CCFF00] checked:text-black checked:rounded-xl font-semibold"
               aria-label="Today's Plan"
               defaultChecked
+              onClick={() => setActiveTab("today")}
             />
             <div className="tab-content bg-base-100 border-base-300 p-6">
               {sortedWorkoutsPlan.map((plan) => (
@@ -144,6 +153,7 @@ const ListedPlanCard = () => {
               name="my_tabs_6"
               className="tab checked:bg-[#CCFF00] checked:text-black checked:rounded-xl font-semibold"
               aria-label="Saved"
+              onClick={() => setActiveTab("saved")}
             />
             <div className="tab-content bg-base-100 border-base-300 p-6">
               {sortedWorkoutsPlanSave.map((plan) => (

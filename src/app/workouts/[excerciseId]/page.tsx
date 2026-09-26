@@ -58,7 +58,7 @@ const WorkoutDetails = async ({ params }: IWorkoutDetailsProps) => {
   } = workout;
 
   return (
-    <div className="container mx-auto px-4 py-10">
+    <div className="container mx-auto px-4 py-10 mt-20">
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
         {/* LEFT SIDE */}
         <div className="relative min-h-100 overflow-hidden rounded-2xl bg-base-200 lg:min-h-175">
