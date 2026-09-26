@@ -2,6 +2,7 @@ import Image from "next/image";
 import { IWorkout } from "@/types/workoutType";
 import AddToTodayBtn from "@/components/workouts/AddToTodayBtn";
 import AddSaveLaterBtn from "@/components/workouts/AddSaveLaterBtn";
+import { Bounce, toast } from "react-toastify";
 
 interface IWorkoutDetailsProps {
   params: Promise<{ excerciseId: string }>;
@@ -16,7 +17,17 @@ const workoutsPromise = async (): Promise<IWorkout[]> => {
     const data: IWorkout[] = await res.json();
     return data;
   } catch (error) {
-    console.error("Error fatching workouts", error);
+    toast.error("Failed to load workouts", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
     return [];
   }
 };
@@ -154,10 +165,7 @@ const WorkoutDetails = async ({ params }: IWorkoutDetailsProps) => {
             <ul className="mt-4 space-y-4">
               {instructions.map((instruction, index) => (
                 <li key={index} className="flex items-center gap-4">
-                  <span className="text-[#9CA3AF]"
-                  >
-                    {index + 1}.
-                  </span>
+                  <span className="text-[#9CA3AF]">{index + 1}.</span>
 
                   <p className="pt-1 leading-6 text-base-content/70">
                     {instruction}

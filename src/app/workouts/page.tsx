@@ -21,7 +21,17 @@ const workoutsPromise = async () => {
     const data: IWorkout[] = await res.json();
     return data;
   } catch (error) {
-    console.error("Error fatching workouts", error);
+    toast.error("Failed to load workouts", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
     return [];
   }
 };
