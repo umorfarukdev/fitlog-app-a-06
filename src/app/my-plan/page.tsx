@@ -22,7 +22,7 @@ const ListedPlanCard = () => {
     if (sortBy === "duration") {
       sortedWorkout.sort((a, b) => b.duration - a.duration);
     } else if (sortBy === "calories") {
-      sortedWorkout.sort((a, b) => b.caloriesBurned - a.caloriesBurned);
+      sortedWorkout.sort((a, b) => a.caloriesBurned - b.caloriesBurned);
     } else if (sortBy === "rating") {
       sortedWorkout.sort((a, b) => b.rating - a.rating);
     }
