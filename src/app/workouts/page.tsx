@@ -39,7 +39,7 @@ const workoutsPromise = async () => {
 const WorksoutPage = async () => {
   const workouts: IWorkout[] = await workoutsPromise();
   return (
-    <section className="container mx-auto py-16">
+    <section className="container mx-auto my-30">
       <div className="mb-8">
         <h1 className="font-oswald font-bold text-3xl">THE LIBRARY</h1>
         <p className="text-[#9CA3AF]">

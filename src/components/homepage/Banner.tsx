@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Banner = () => {
   return (
-    <div className="hero bg-[#222630] container mx-auto p-10 rounded-2xl my-16 font-i">
+    <div className="hero bg-[#222630] container mx-auto p-10 rounded-2xl mt-30">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <Image
           alt="Tailwind CSS hero component"

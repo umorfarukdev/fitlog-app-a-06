@@ -56,7 +56,7 @@ const ListedPlanCard = () => {
   };
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto mt-20">
       <div className="mb-8 mt-12">
         <h1 className="font-oswald font-bold text-3xl">MY PLAN</h1>
         <p className="text-[#9CA3AF]">
@@ -64,7 +64,7 @@ const ListedPlanCard = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border border-[#ffffff20] py-6 px-8 rounded-2xl">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 bg-[#232834] border border-[#ffffff20] py-6 px-8 rounded-2xl">
         <div className="border-r mr-4">
           <p>Exercises</p>
           <h1 className="text-[#CCFF00] font-bold font-oswald text-4xl">
