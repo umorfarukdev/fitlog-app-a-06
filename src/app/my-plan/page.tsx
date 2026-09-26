@@ -86,6 +86,7 @@ const ListedPlanCard = () => {
       </div>
 
       <div className="w-full text-center mt-10">
+        <span className="mr-4">Sort By</span>
         <select
           value={sortBy}
           onChange={(e) =>

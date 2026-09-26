@@ -39,11 +39,11 @@ const Navbar = () => {
       <li>
         <Link
           className={`transition duration-200 ${
-            pathName === "/myplan"
+            pathName === "/my-plan"
               ? "text-[#C2F800] bg-[#1A2312] font-semibold px-4 py-2 rounded-full  pb-1"
               : "text-gray-500 hover:text-black"
           }`}
-          href="/myplan"
+          href="/my-plan"
         >
           My Plan
         </Link>
@@ -81,7 +81,7 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="text-xl flex gap-2 items-center font-bold">
-            <Image src={Logo} alt="Logo"></Image>
+            <Image className="w-6" src={Logo} alt="Logo"></Image>
             <h1>FITLOG</h1>
           </div>
         </div>
