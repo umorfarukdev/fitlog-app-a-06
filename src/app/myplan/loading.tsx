@@ -2,9 +2,17 @@ import React from 'react';
 
 const loading = () => {
     return (
-        <div className='container mx-auto text-center py-5'>
-            <span className="loading loading-spinner loading-md"></span>
-        </div>
+        <div className="container mx-auto flex min-h-75 items-center justify-center">
+  <div className="flex flex-col items-center gap-4">
+
+    <span className="loading loading-spinner loading-lg text-[#CCFF00]"></span>
+
+    <p className="text-sm text-gray-400 font-medium">
+      Loading workouts lists...
+    </p>
+
+  </div>
+</div>
     );
 };
 
